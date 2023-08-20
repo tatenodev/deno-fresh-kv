@@ -11,6 +11,21 @@ enum ConnectionState {
 export function Chat() {
   const connectionState = useSignal(ConnectionState.Disconnected);
   const messages = useSignal<Message[]>([]);
+  const sendMessage = useSignal("");
+
+  const onSend = async (msg: string) => {
+    console.log("hoge", msg);
+    if (msg === "") {
+      console.log("return");
+      return;
+    }
+    const res = await fetch("http://localhost:8000/api/broadcast/send", {
+      method: "POST",
+      body: JSON.stringify({ body: msg }),
+    });
+    console.log("res:", res);
+    sendMessage.value = "";
+  };
 
   useEffect(() => {
     const events = new EventSource("/api/broadcast/listen");
@@ -45,6 +60,15 @@ export function Chat() {
     <div>
       <p>Chat Component</p>
       <p>Connection state: {connectionState.value}</p>
+      <div>
+        <label htmlFor="">message:</label>
+        <input
+          type="text"
+          value={sendMessage.value}
+          onChange={(e) => sendMessage.value = e.currentTarget.value}
+          onKeyDown={(e) => e.key === "Enter" && onSend(e.currentTarget.value)}
+        />
+      </div>
       {messages.value.map((message) => (
         <div>
           <p>id: {message.id}</p>
