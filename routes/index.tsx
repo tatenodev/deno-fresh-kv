@@ -4,6 +4,7 @@ import { KVDemo } from "../islands/KVDemo.tsx";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { getAllUser } from "../utils/db.ts";
 import { User } from "../utils/type.ts";
+import { Chat } from "../islands/Chat.tsx";
 
 type Context = {
   users: User[];
@@ -37,6 +38,7 @@ export default function Home({ data }: PageProps<Context>) {
         <Counter count={count} />
       </div>
       <KVDemo users={users} />
+      <Chat />
     </div>
   );
 }
