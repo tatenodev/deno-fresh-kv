@@ -43,7 +43,12 @@ export function KVDemo({ users }: KVDemoProps) {
 
   return (
     <>
-      <button onClick={handleGetUser}>get users</button>
+      <button
+        onClick={handleGetUser}
+        class="px-2 py-1 border-gray-500 border-2 rounded bg-white hover:bg-gray-200 transition-colors"
+      >
+        get users
+      </button>
       <div>
         <label htmlFor="">id</label>
         <input
@@ -60,10 +65,16 @@ export function KVDemo({ users }: KVDemoProps) {
           onChange={(e) => user.value.name = e.currentTarget.value}
         />
       </div>
-      <button onClick={() => handleCreateUser(user.value.id, user.value.name)}>
+      <button
+        onClick={() => handleCreateUser(user.value.id, user.value.name)}
+        class="px-2 py-1 border-gray-500 border-2 rounded bg-white hover:bg-gray-200 transition-colors"
+      >
         create user
       </button>
-      <button onClick={() => handleDeleteUser(user.value.id)}>
+      <button
+        onClick={() => handleDeleteUser(user.value.id)}
+        class="px-2 py-1 border-gray-500 border-2 rounded bg-white hover:bg-gray-200 transition-colors"
+      >
         delete user
       </button>
       <div class={tw`${SampleStyle}`}>User List</div>
