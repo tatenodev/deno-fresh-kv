@@ -19,7 +19,7 @@ export function Chat() {
       console.log("return");
       return;
     }
-    const res = await fetch("http://localhost:8000/api/broadcast/send", {
+    const res = await fetch(`${location.origin}/api/broadcast/send`, {
       method: "POST",
       body: JSON.stringify({ body: msg }),
     });

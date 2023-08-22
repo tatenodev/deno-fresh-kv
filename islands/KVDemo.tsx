@@ -17,14 +17,14 @@ export function KVDemo({ users }: KVDemoProps) {
   const user = useSignal({ id: "", name: "" });
 
   const handleGetUser = async () => {
-    const user = await fetch("http://localhost:8000/api/user");
+    const user = await fetch(`${location.origin}/api/user`);
     const result: User[] = await user.json();
     pageUsers.value = [...result];
     console.log(result);
   };
 
   const handleCreateUser = async (id: string, name: string) => {
-    const res = await fetch("http://localhost:8000/api/user", {
+    const res = await fetch(`${location.origin}/api/user`, {
       method: "POST",
       body: JSON.stringify({ id, name }),
     });
@@ -34,7 +34,7 @@ export function KVDemo({ users }: KVDemoProps) {
   };
 
   const handleDeleteUser = async (id: string) => {
-    const res = await fetch(`http://localhost:8000/api/user/${id}`, {
+    const res = await fetch(`${location.origin}/api/user/${id}`, {
       method: "DELETE",
     });
     console.log("res:", res);
