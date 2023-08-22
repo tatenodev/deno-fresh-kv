@@ -16,7 +16,10 @@ export const handler: Handlers = {
       },
     });
     return new Response(stream.pipeThrough(new TextEncoderStream()), {
-      headers: { "content-type": "text/event-stream" },
+      headers: {
+        "content-type": "text/event-stream",
+        "cache-control": "no-store",
+      },
     });
   },
 };
